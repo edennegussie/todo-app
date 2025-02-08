@@ -1,0 +1,51 @@
+version: '3.8'
+services:
+  frontend:
+    container_name: todo_frontend
+    build:
+      context: ./frontend
+    networks:
+      static:
+        ipv4_address: 172.31.20.10
+    environment:
+      BACKEND_HOST: 172.31.20.11
+    volumes:
+      - ./frontend:/usr/src/app
+
+  backend:
+    build: ./backend
+    container_name: todo_backend
+    networks:
+      static:
+        ipv4_address: 172.31.20.11
+    environment:
+      FRONTEND_HOST: 172.31.20.10
+      DATABASE_HOST: 172.31.20.12
+    command: npx nodemon server.js
+    volumes:
+      - ./backend:/usr/src/app
+
+  pgdb:
+    image: postgres:latest
+    container_name: todo_postgres
+    restart: always
+    networks:
+      static:
+        ipv4_address: 172.31.20.12
+    environment:
+      POSTGRES_USER: todo_user
+      POSTGRES_PASSWORD: todo_password
+      POSTGRES_DB: todo_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+networks:
+  static:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "true"
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.31.20.0/24
+volumes:
+  pgdata:
