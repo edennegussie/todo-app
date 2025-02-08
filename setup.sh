@@ -10,6 +10,8 @@ cd ../todo-app-backend/
 
 npm install 
 
+cd ../
+
 docker-compose up --build -d
 
 xdg-open https://172.31.20.10:3000/
