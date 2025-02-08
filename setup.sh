@@ -2,7 +2,7 @@ git clone https://github.com/edennegussie/todo-app-frontend.git ./todo-app-front
 
 git clone https://github.com/edennegussie/todo-app-backend.git  ./todo-app-backend
 
-cd ./todo-app-frontend 
+cd ./todo-app-frontend/
 
 npm install
 
