@@ -32,5 +32,12 @@
 
 8. After completing the above steps, the app should run and function as expected.
 
-9. When done, stop the containers and release the networks. Run:  
+9. To test, you can sign up with your own email address, or you may login with the below test user:  
+	_email: user1@example.com_  
+	_password: SpringACT!_
+
+10. When done, stop the containers and release the networks. Run:  
 	`docker-compose down`
+
+11. To restart the containers again, run:  
+	`docker-compose up -d`
